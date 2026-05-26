@@ -98,8 +98,7 @@
             flex-direction: column;
             align-items: center;
         }
-
-        /* 1) 캡처본 상단 지도/전화 버튼 구조 */
+        /* 상단 지도/전화 버튼 */
         .map-top-bar {
             display: flex;
             justify-content: center;
@@ -122,85 +121,91 @@
             width: 130px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         }
-        .map-capsule-btn img {
-            width: 16px;
-            margin-right: 8px;
-        }
-
-        /* 2) 캡처본 중앙 비전힐스 CC 네이버 지도 그래픽 레이아웃 */
+        /* 네이버 지도 스타일 지도 박스 */
         .map-graphic-box {
             width: 100%;
-            height: 240px;
-            background-color: #baddf9;
-            background-image: url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=600'); /* 골프장 연상 지도 대안 */
-            background-size: cover;
-            background-position: center;
-            border-radius: 4px;
+            height: 250px;
             position: relative;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
             margin-bottom: 15px;
-            border: 1px solid #e6e6e6;
+            border: 1px solid #d8d8d8;
+            overflow: hidden;
+            border-radius: 4px;
         }
-        /* 말풍선 라벨 기획 */
+        /* 팝업 말풍선 */
         .map-bubble-label {
             position: absolute;
-            top: 40%;
+            top: 33%;
             left: 50%;
             transform: translate(-50%, -100%);
-            background-color: #ffffff;
-            border: 1px solid #000000;
-            padding: 6px 14px;
-            font-size: 15px;
+            background: #fff;
+            border: 1.5px solid #222;
+            padding: 5px 13px;
+            font-size: 14px;
             font-weight: 700;
-            color: #000;
+            color: #111;
             white-space: nowrap;
+            z-index: 10;
         }
         .map-bubble-label::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: -7px;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 6px 6px 0;
+            border-width: 7px 6px 0;
             border-style: solid;
-            border-color: #ffffff transparent;
+            border-color: #fff transparent;
             display: block;
             width: 0;
         }
         .map-bubble-label::before {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -9px;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 7px 7px 0;
+            border-width: 8px 7px 0;
             border-style: solid;
-            border-color: #000000 transparent;
+            border-color: #222 transparent;
             display: block;
             width: 0;
             z-index: -1;
         }
-        /* 파란색 네이버 지도 마커 */
+        /* 네이버 파란 마커 */
         .naver-blue-pin {
             position: absolute;
-            top: 42%;
+            top: 43%;
             left: 50%;
-            transform: translateX(-50%);
-            width: 22px;
-            height: 22px;
-            background-color: #03C75A;
-            border: 3px solid #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            z-index: 10;
         }
-
-        /* 3) 캡처본 최하단 내비게이션 앱 연동 바 */
+        .naver-blue-pin .pin-body {
+            width: 36px;
+            height: 36px;
+            background: #1c6ef2;
+            border: 3px solid #fff;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .naver-blue-pin .pin-inner {
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 하단 내비게이션 바 */
         .map-bottom-navi-bar {
             width: 100%;
             background-color: #ffffff;
             border: 1px solid #e6e6e6;
-            border-radius: 4px;
-            padding: 12px 10px;
+            border-radius: 8px;
+            padding: 14px 10px;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -209,15 +214,38 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            font-size: 13px;
-            color: #444;
-            font-weight: 500;
+            font-size: 14px;
+            color: #222;
+            font-weight: 600;
+            gap: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-        .navi-app-btn img {
-            width: 18px;
-            height: 18px;
-            margin-right: 6px;
-            border-radius: 4px;
+        .app-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        /* 티맵 아이콘 */
+        .tmap-icon {
+            background: linear-gradient(135deg, #fff 0%, #fff 100%);
+            border: 1.5px solid #eee;
+            overflow: hidden;
+        }
+        /* 카카오내비 아이콘 */
+        .kakao-icon {
+            background: #FEE500;
+            border: none;
+        }
+        /* 네이버지도 아이콘 */
+        .naver-icon {
+            background: #03C75A;
+            border: none;
         }
 
         /* 🔘 RSVP 전송 버튼 */
@@ -293,7 +321,7 @@
 
             <div class="map-top-bar">
                 <a href="https://map.naver.com/p/search/%EB%B9%84%EC%A0%84%ED%9E%90%EC%8A%A4CC" target="_blank" class="map-capsule-btn">
-                    <img src="https://i.ibb.co/nC4zX7z/naver-map-logo.png" alt="지도"> 지도
+                    🗺️ 지도
                 </a>
                 <a href="tel:031-590-3200" class="map-capsule-btn">
                     📞 전화
@@ -301,19 +329,87 @@
             </div>
 
             <div class="map-graphic-box" data-aos="fade-up">
-                <div class="map-bubble-label">비전힐스 CC</div>
-                <div class="naver-blue-pin"></div>
+                <!-- 네이버 지도 스타일 SVG 배경 -->
+                <svg width="100%" height="100%" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="250" fill="#e8f0e5"/>
+                    <!-- 산지/지형 -->
+                    <path d="M0,0 Q60,30 120,10 Q180,0 240,20 Q300,40 360,15 L400,0 Z" fill="#dbe9d7"/>
+                    <path d="M0,250 Q80,200 160,230 Q240,250 320,210 Q380,190 400,220 L400,250 Z" fill="#dbe9d7"/>
+                    <!-- 골프 코스 페어웨이 -->
+                    <ellipse cx="200" cy="125" rx="90" ry="65" fill="#cde0c8"/>
+                    <ellipse cx="310" cy="80" rx="65" ry="75" fill="#d2e3ce"/>
+                    <ellipse cx="80" cy="170" rx="55" ry="45" fill="#c9ddc4"/>
+                    <!-- 등고선 -->
+                    <path d="M0,35 Q50,20 110,38 Q170,55 240,35 Q310,15 400,40" stroke="#c8dac4" stroke-width="0.9" fill="none"/>
+                    <path d="M0,75 Q70,55 150,72 Q230,90 310,68 Q370,52 400,75" stroke="#c8dac4" stroke-width="0.9" fill="none"/>
+                    <path d="M0,160 Q90,140 180,158 Q270,178 360,150 Q390,140 400,155" stroke="#c8dac4" stroke-width="0.9" fill="none"/>
+                    <path d="M0,210 Q100,195 200,212 Q300,228 400,205" stroke="#c8dac4" stroke-width="0.9" fill="none"/>
+                    <!-- 워터 해저드 -->
+                    <ellipse cx="315" cy="92" rx="38" ry="22" fill="#a8cce0" opacity="0.85"/>
+                    <!-- 홀 번호 -->
+                    <text x="108" y="48" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">8</text>
+                    <text x="175" y="62" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">3</text>
+                    <text x="348" y="48" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">7</text>
+                    <text x="278" y="32" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">8</text>
+                    <text x="362" y="165" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">4</text>
+                    <!-- NAVER 저작권 바 -->
+                    <rect x="0" y="225" width="400" height="25" fill="rgba(255,255,255,0.82)"/>
+                    <text x="10" y="241" font-size="11" fill="#888" font-family="sans-serif">© NAVER Corp.</text>
+                    <text x="310" y="241" font-size="13" fill="#03C75A" font-family="sans-serif" font-weight="900" letter-spacing="0.5">NAVER</text>
+                    <!-- 100m 스케일 -->
+                    <line x1="358" y1="238" x2="390" y2="238" stroke="#555" stroke-width="1.5"/>
+                    <line x1="358" y1="234" x2="358" y2="242" stroke="#555" stroke-width="1.5"/>
+                    <line x1="390" y1="234" x2="390" y2="242" stroke="#555" stroke-width="1.5"/>
+                </svg>
+                <!-- 말풍선 팝업 -->
+                <div class="map-bubble-label">비전힐스 cc</div>
+                <!-- 네이버 스타일 파란 핀 -->
+                <div class="naver-blue-pin">
+                    <div class="pin-body">
+                        <div class="pin-inner">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="map-bottom-navi-bar" data-aos="fade-up">
+                <!-- 티맵 -->
                 <a href="#" class="navi-app-btn" onclick="(function(){var ua=navigator.userAgent;var goal='goalname=%EB%B9%84%EC%A0%84%ED%9E%90%EC%8A%A4CC&goalx=127.2674190&goaly=37.6413502';if(/Android/i.test(ua)){window.location.href='intent://route?'+goal+'#Intent;scheme=tmap;package=com.skt.tmap.ku;end';}else if(/iPhone|iPad/i.test(ua)){window.location.href='tmap://route?'+goal;setTimeout(function(){window.open('https://itunes.apple.com/app/id431589174','_blank');},2000);}else{window.open('https://map.naver.com/p/search/%EB%B9%84%EC%A0%84%ED%9E%90%EC%8A%A4CC','_blank');}})();return false;">
-                    <img src="https://i.ibb.co/6y4tB4D/tmap-logo.png" alt="티맵"> 티맵
+                    <div class="app-icon tmap-icon">
+                        <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#FF4B6E"/>
+                                    <stop offset="100%" style="stop-color:#C8006E"/>
+                                </linearGradient>
+                            </defs>
+                            <text x="50" y="78" font-size="82" font-family="Arial Black,sans-serif" font-weight="900" fill="url(#tg)" text-anchor="middle">T</text>
+                        </svg>
+                    </div>
+                    티맵
                 </a>
+                <!-- 카카오내비 -->
                 <a href="https://map.kakao.com/link/to/%EB%B9%84%EC%A0%84%ED%9E%90%EC%8A%A4CC,37.6413502,127.2674190" target="_blank" class="navi-app-btn">
-                    <img src="https://i.ibb.co/68Xh9qH/kakao-nav-logo.png" alt="카카오내비"> 카카오내비
+                    <div class="app-icon kakao-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="12,3 22,20 2,20" fill="none" stroke="#3C1E1E" stroke-width="2.2" stroke-linejoin="round"/>
+                            <line x1="12" y1="9" x2="12" y2="15" stroke="#3C1E1E" stroke-width="2.2" stroke-linecap="round"/>
+                            <circle cx="12" cy="17.5" r="1.2" fill="#3C1E1E"/>
+                        </svg>
+                    </div>
+                    카카오내비
                 </a>
-                <a href="#" target="_blank" class="navi-app-btn" onclick="(function(){var app='nmap://route/car?dlat=37.6413502&dlng=127.2674190&dname=%EB%B9%84%EC%A0%84%ED%9E%90%EC%8A%A4CC&appname=visionhills';var web='https://map.naver.com/p/search/%EB%B9%84%EC%A0%84%ED%9E%90%EC%8A%A4CC';window.location.href=app;setTimeout(function(){window.open(web,'_blank');},1500);})();return false;">
-                    <img src="https://i.ibb.co/nC4zX7z/naver-map-logo.png" alt="네이버 지도"> 네이버 지도
+                <!-- 네이버 지도 -->
+                <a href="#" class="navi-app-btn" onclick="(function(){var app='nmap://route/car?dlat=37.6413502&dlng=127.2674190&dname=%EB%B9%84%EC%A0%84%ED%9E%90%EC%8A%A4CC&appname=visionhills';var web='https://map.naver.com/p/search/%EB%B9%84%EC%A0%84%ED%9E%90%EC%8A%A4CC';window.location.href=app;setTimeout(function(){window.open(web,'_blank');},1500);})();return false;">
+                    <div class="app-icon naver-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <text x="12" y="18" font-size="17" font-family="Arial Black,sans-serif" font-weight="900" fill="white" text-anchor="middle">N</text>
+                        </svg>
+                    </div>
+                    네이버 지도
                 </a>
             </div>
         </div>
