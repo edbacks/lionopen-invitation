@@ -15,6 +15,7 @@
     <meta name="twitter:image" content="https://edbacks.github.io/lionopen-invitation/lion-open-2026-preview.png">
     
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
             --lion-navy: #354471; /* 보내주신 이미지의 남색 반영 */
@@ -257,6 +258,38 @@
             border: none;
         }
 
+
+        /* Leaflet 네이버 스타일 커스텀 */
+        .naver-popup .leaflet-popup-content-wrapper {
+            background: #fff;
+            border: 1.5px solid #111;
+            border-radius: 2px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            padding: 0;
+        }
+        .naver-popup .leaflet-popup-content {
+            margin: 6px 14px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #111;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .naver-popup .leaflet-popup-tip-container { margin-top: -1px; }
+        .naver-popup .leaflet-popup-tip { background: #fff; border: 1px solid #111; box-shadow: none; }
+        .naver-pin-wrap {
+            width: 34px; height: 34px;
+            background: #1c6ef2;
+            border: 3px solid #fff;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .naver-pin-inner {
+            transform: rotate(45deg);
+            display: flex; align-items: center; justify-content: center;
+        }
+
         /* 🔘 RSVP 전송 버튼 */
         .rsvp-section {
             padding: 30px;
@@ -340,52 +373,7 @@
                 </a>
             </div>
 
-            <div class="map-graphic-box" data-aos="fade-up">
-                <!-- 네이버 지도 스타일 SVG 배경 -->
-                <svg width="100%" height="100%" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="400" height="250" fill="#e8f0e5"/>
-                    <!-- 산지/지형 -->
-                    <path d="M0,0 Q60,30 120,10 Q180,0 240,20 Q300,40 360,15 L400,0 Z" fill="#dbe9d7"/>
-                    <path d="M0,250 Q80,200 160,230 Q240,250 320,210 Q380,190 400,220 L400,250 Z" fill="#dbe9d7"/>
-                    <!-- 골프 코스 페어웨이 -->
-                    <ellipse cx="200" cy="125" rx="90" ry="65" fill="#cde0c8"/>
-                    <ellipse cx="310" cy="80" rx="65" ry="75" fill="#d2e3ce"/>
-                    <ellipse cx="80" cy="170" rx="55" ry="45" fill="#c9ddc4"/>
-                    <!-- 등고선 -->
-                    <path d="M0,35 Q50,20 110,38 Q170,55 240,35 Q310,15 400,40" stroke="#c8dac4" stroke-width="0.9" fill="none"/>
-                    <path d="M0,75 Q70,55 150,72 Q230,90 310,68 Q370,52 400,75" stroke="#c8dac4" stroke-width="0.9" fill="none"/>
-                    <path d="M0,160 Q90,140 180,158 Q270,178 360,150 Q390,140 400,155" stroke="#c8dac4" stroke-width="0.9" fill="none"/>
-                    <path d="M0,210 Q100,195 200,212 Q300,228 400,205" stroke="#c8dac4" stroke-width="0.9" fill="none"/>
-                    <!-- 워터 해저드 -->
-                    <ellipse cx="315" cy="92" rx="38" ry="22" fill="#a8cce0" opacity="0.85"/>
-                    <!-- 홀 번호 -->
-                    <text x="108" y="48" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">8</text>
-                    <text x="175" y="62" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">3</text>
-                    <text x="348" y="48" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">7</text>
-                    <text x="278" y="32" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">8</text>
-                    <text x="362" y="165" font-size="15" fill="#8aa884" font-family="sans-serif" font-weight="600" opacity="0.9">4</text>
-                    <!-- NAVER 저작권 바 -->
-                    <rect x="0" y="225" width="400" height="25" fill="rgba(255,255,255,0.82)"/>
-                    <text x="10" y="241" font-size="11" fill="#888" font-family="sans-serif">© NAVER Corp.</text>
-                    <text x="310" y="241" font-size="13" fill="#03C75A" font-family="sans-serif" font-weight="900" letter-spacing="0.5">NAVER</text>
-                    <!-- 100m 스케일 -->
-                    <line x1="358" y1="238" x2="390" y2="238" stroke="#555" stroke-width="1.5"/>
-                    <line x1="358" y1="234" x2="358" y2="242" stroke="#555" stroke-width="1.5"/>
-                    <line x1="390" y1="234" x2="390" y2="242" stroke="#555" stroke-width="1.5"/>
-                </svg>
-                <!-- 말풍선 팝업 -->
-                <div class="map-bubble-label">비전힐스 cc</div>
-                <!-- 네이버 스타일 파란 핀 -->
-                <div class="naver-blue-pin">
-                    <div class="pin-body">
-                        <div class="pin-inner">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                                <path d="M7 10l5 5 5-5z"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <div id="visionhills-map" data-aos="fade-up" style="width:100%;height:250px;border:1px solid #d8d8d8;border-radius:4px;margin-bottom:15px;"></div>
 
             <div class="map-bottom-navi-bar" data-aos="fade-up">
                 <!-- 티맵 -->
@@ -413,6 +401,33 @@
         </footer>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      window.addEventListener('load', function() {
+        var map = L.map('visionhills-map', {
+          scrollWheelZoom: false,
+          attributionControl: false
+        }).setView([37.6413502, 127.2674190], 16);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        var icon = L.divIcon({
+          className: '',
+          html: '<div class="naver-pin-wrap"><div class="naver-pin-inner"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M7 10l5 5 5-5z"/></svg></div></div>',
+          iconSize: [34, 34],
+          iconAnchor: [10, 34],
+          popupAnchor: [8, -38]
+        });
+
+        L.marker([37.6413502, 127.2674190], {icon: icon})
+          .addTo(map)
+          .bindPopup('<b>비전힐스 cc</b>', { className: 'naver-popup', closeButton: false })
+          .openPopup();
+
+        // AOS 애니메이션 후 지도 크기 재계산
+        setTimeout(function() { map.invalidateSize(); }, 600);
+      });
+    </script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>AOS.init({ once: true });</script>
 </body>
